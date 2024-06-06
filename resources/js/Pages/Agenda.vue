@@ -1,27 +1,18 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
+import AgendaList from '../Components/AgendaList.vue';
 
-defineProps({
+// Define os props
+const props = defineProps({
     agenda: {
-        type: String,
+        type: Array,
         required: true,
     }
 });
 
-const renderAgenda = () => {
-    return agenda.map((item)=>{
-        return (
-            <div key={{item.id}}>
-            </div>
-        );
-    });
-}
 </script>
 
 <template>
     <Head title="Agenda" />
-
-        hello
-
-    <div>{{JSON.stringify(agenda)}}</div>
+    <AgendaList :agendaList="props.agenda" />
 </template>
