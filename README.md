@@ -1,3 +1,11 @@
+## FRAMEWORKS
+
+-   Laravel 11
+-   VUE 3
+-   Tailwind css
+-   Innertia
+-   Vite JS
+
 ## REQUERIMENTO
 
 -   php 8.2
