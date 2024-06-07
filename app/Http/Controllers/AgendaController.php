@@ -12,7 +12,7 @@ class AgendaController extends Controller
      */
     public function index()
     {
-        //
+        return Agenda::all();
     }
 
     /**
@@ -33,7 +33,7 @@ class AgendaController extends Controller
         $agenda->email = $request->email;
         $agenda->endereco = $request->endereco;
         $agenda->telefone = $request->telefone;
-        $agenda->save();
+        return $agenda->save();
     }
 
     /**
@@ -41,7 +41,7 @@ class AgendaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Agenda::find($id);
     }
 
     /**
@@ -62,7 +62,7 @@ class AgendaController extends Controller
         $agenda->email = $request->email;
         $agenda->endereco = $request->endereco;
         $agenda->telefone = $request->telefone;
-        $agenda->save();
+        return $agenda->save();
     }
 
     /**
