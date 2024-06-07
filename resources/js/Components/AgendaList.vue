@@ -1,5 +1,5 @@
 <template>
-    <div class="container h-screen relative bg-amber-50	">
+    <div class="container h-screen relative bg-amber-50	shadow-xl">
         <div class="absolute right-[20px] bottom-[50px]" v-if="!showForm">
             <button type="button"
                 class="w-fit py-2 px-6 drop-shadow text-[40px] border border-transparent font-medium rounded-full text-white bg-blue-500 hover:bg-blue-600 focus:outline-none transition ease-in-out duration-150"
