@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  web:
+    # build: ./
+    restart: always
+    image: php:8.2-apache
+    container_name: laravel_11
+    volumes:
+      - /media/publico:/media/publico
+      - ./public:/var/www/html
+    ports:
+      - "9000:80"
+    # extra_hosts:
+      # - "host.docker.internal:host-gateway"
+    depends_on:
+      - composer
+    # networks:
+      # - app-network
+
+  composer:
+    container_name: composer
+    image: composer:latest
+    volumes:
+      - '.:/app'
+    working_dir: /app
+    command: ["composer", "install"]
+
+networks:
+  app-network:
+    driver: bridge
+
+# services:
+#     api-agro:
+#         build: ./
+#         restart: always
+#         volumes:
+#             - ./php.ini:/usr/local/etc/php/php.ini
+#             - /etc/timezone:/etc/timezone:ro
+#             - /etc/localtime:/etc/localtime:ro
+#             - /usr/share/zoneinfo:/usr/share/zoneinfo
+#         extra_hosts:
+#             - "host.docker.internal:host-gateway"              
+#         ports:
+#             - "9004:9000"

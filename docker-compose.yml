@@ -1,34 +1,21 @@
 version: '3.8'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: laravel_app
-    restart: unless-stopped
-    working_dir: /var/www/html
+  lara:
+    image: php:8.2-apache
+    container_name: lara
     volumes:
-      - .:/var/www/html
+      - '.:/var/www/html'
+      - './php.ini:/usr/local/etc/php/php.ini'
     ports:
-      - "8000:80"
-    depends_on:
-      - mysql
+      - "8080:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: bash -c "chown -R www-data:www-data /var/www/html && apache2-foreground"
 
-  mysql:
-    image: mysql:8.0
-    container_name: laravel_mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: laravel_db
-      MYSQL_USER: laravel_user
-      MYSQL_PASSWORD: laravel_password
-    ports:
-      - "3306:3306"
+
+  composer:
+    image: composer:latest
+    container_name: composer
     volumes:
-      - mysql_data:/var/lib/mysql
-
-volumes:
-  mysql_data:
-    driver: local
+      - '.:/app'
